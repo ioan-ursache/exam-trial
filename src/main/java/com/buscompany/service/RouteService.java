@@ -2,24 +2,20 @@ package com.buscompany.service;
 
 import com.buscompany.model.Route;
 import com.buscompany.repository.RouteRepository;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Service layer providing business logic for route management.
  * 
- * This layer:
- * - Handles sorting using Java Streams (requirement: use streams for sorting)
- * - Manages booking logic and seat availability
- * - Coordinates between Controller and Repository layers
- * - Provides observable lists for JavaFX UI updates
+ * TODO: Implement sorting using Java Streams (REQUIREMENT)
+ * TODO: Implement booking logic
+ * TODO: Implement Observer pattern for multi-window updates (BONUS)
  */
 public class RouteService {
     private final RouteRepository repository;
-    private final ObservableList<BookingObserver> observers = FXCollections.observableArrayList();
+    // TODO: Add observer list for Observer pattern
 
     public RouteService() {
         this.repository = new RouteRepository();
@@ -27,95 +23,49 @@ public class RouteService {
     }
 
     /**
-     * Gets all routes sorted by source city and departure time using Java Streams.
-     * REQUIREMENT: Must use Java Streams for sorting (1 point)
+     * TODO: Get all routes sorted by source city and departure time
+     * IMPORTANT: Must use Java Streams for sorting!
      */
     public List<Route> getAllRoutesSorted() {
-        return repository.getAllRoutes().stream()
-                .sorted((r1, r2) -> {
-                    // First sort by source city
-                    int sourceCityComparison = r1.getSourceCity().compareTo(r2.getSourceCity());
-                    if (sourceCityComparison != 0) {
-                        return sourceCityComparison;
-                    }
-                    // Then sort by departure time
-                    return r1.getDepartureTime().compareTo(r2.getDepartureTime());
-                })
-                .collect(Collectors.toList());
+        // TODO: Implement using streams
+        return repository.getAllRoutes();
     }
 
     /**
-     * Gets routes for selected source and destination, sorted by departure time.
+     * TODO: Get routes for selected source and destination
      */
     public ObservableList<Route> getRoutesBySourceAndDestination(String source, String destination) {
-        List<Route> routes = repository.getRoutesBySourceAndDestination(source, destination);
-        return FXCollections.observableArrayList(routes);
+        // TODO: Implement filtering and convert to ObservableList
+        return null;
     }
 
     /**
-     * Gets all source cities.
+     * TODO: Get all source cities
      */
     public ObservableList<String> getAllSourceCities() {
-        List<String> cities = repository.getAllSourceCities();
-        return FXCollections.observableArrayList(cities);
+        // TODO: Implement city retrieval
+        return null;
     }
 
     /**
-     * Gets destination cities for a given source city.
+     * TODO: Get destination cities for a source
      */
     public ObservableList<String> getDestinationCitiesForSource(String sourceCity) {
-        List<String> cities = repository.getDestinationCitiesForSource(sourceCity);
-        return FXCollections.observableArrayList(cities);
+        // TODO: Implement filtered cities
+        return null;
     }
 
     /**
-     * Books tickets for a route and updates available seats.
-     * Notifies all observers of the booking.
+     * TODO: Book tickets for a route
+     * TODO: Validate seat availability
+     * TODO: Update database
+     * TODO: Notify observers (if implementing bonus)
      */
     public boolean bookTickets(Route route, int ticketCount) {
-        if (route.getAvailableSeats() < ticketCount) {
-            return false; // Not enough seats
-        }
-        
-        // Update available seats
-        int newAvailableSeats = route.getAvailableSeats() - ticketCount;
-        route.setAvailableSeats(newAvailableSeats);
-        repository.updateAvailableSeats(route.getId(), newAvailableSeats);
-        
-        // Notify observers of the booking
-        notifyObservers(route, ticketCount);
-        
-        return true;
+        // TODO: Implement booking with validation
+        return false;
     }
 
-    /**
-     * Registers a booking observer (Observer design pattern for bonus).
-     */
-    public void addObserver(BookingObserver observer) {
-        observers.add(observer);
-    }
-
-    /**
-     * Unregisters a booking observer.
-     */
-    public void removeObserver(BookingObserver observer) {
-        observers.remove(observer);
-    }
-
-    /**
-     * Notifies all observers of a booking event.
-     */
-    private void notifyObservers(Route route, int ticketCount) {
-        for (BookingObserver observer : observers) {
-            observer.onBookingMade(route, ticketCount);
-        }
-    }
-
-    /**
-     * Observer interface for booking events.
-     * Used for real-time updates across multiple client windows.
-     */
-    public interface BookingObserver {
-        void onBookingMade(Route route, int ticketCount);
-    }
+    // TODO: Add observer interface
+    // TODO: Add observer management methods (addObserver, removeObserver, notifyObservers)
 }

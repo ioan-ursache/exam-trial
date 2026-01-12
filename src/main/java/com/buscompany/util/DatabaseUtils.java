@@ -7,28 +7,24 @@ import java.sql.SQLException;
 /**
  * Utility class for database operations.
  * 
- * Manages SQLite database connections and provides
- * utility methods for database management.
+ * TODO: Implement database connection management
+ * TODO: Implement driver loading
  */
 public class DatabaseUtils {
     private static final String DB_URL = "jdbc:sqlite:bus_booking.db";
 
     /**
-     * Gets a new database connection.
+     * TODO: Get a new database connection
      */
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL);
+        // TODO: Implement connection retrieval
+        return null;
     }
 
     /**
-     * Ensures the SQLite JDBC driver is loaded.
+     * TODO: Load SQLite JDBC driver
      */
     public static void loadDriver() {
-        try {
-            Class.forName("org.sqlite.JDBC");
-        } catch (ClassNotFoundException e) {
-            System.err.println("SQLite JDBC driver not found");
-            e.printStackTrace();
-        }
+        // TODO: Load driver class
     }
 }

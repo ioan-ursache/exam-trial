@@ -1,55 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
 
 <!--
     Main Scene FXML
     
-    This is the primary UI file for the Bus Booking System.
-    It displays:
-    - All available routes sorted by source city and departure time
-    - Button to open new client booking windows
+    TODO: Create the main application window layout
+    TODO: Add title and routes count label at top
+    TODO: Add routes list in center
+    TODO: Add button to open client windows at bottom
     
-    Layout: BorderPane with:
-    - Top: Title and info panel
-    - Center: Routes list view
-    - Bottom: Action buttons
+    Layout suggestions:
+    - BorderPane as root
+    - VBox in top section for title/info
+    - ListView in center for routes display
+    - HBox in bottom section for buttons
 -->
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.buscompany.controller.MainSceneController"
-            style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12;">
+            fx:controller="com.buscompany.controller.MainSceneController">
     
-    <!-- Top Section: Title and Stats -->
+    <!-- TODO: Add top section with title and stats -->
     <top>
-        <VBox style="-fx-padding: 15; -fx-background-color: #f0f0f0;" spacing="10">
-            <Label text="Bus Booking System"
-                   style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #333;"/>
-            <Label fx:id="routesCountLabel" text="Total Routes: 0"
-                   style="-fx-font-size: 12; -fx-text-fill: #666;"/>
-        </VBox>
+        <!-- VBox here -->
     </top>
     
-    <!-- Center Section: Routes List -->
+    <!-- TODO: Add center section with routes list -->
     <center>
-        <VBox spacing="10" style="-fx-padding: 15;">
-            <Label text="All Available Routes (sorted by city and departure time)"
-                   style="-fx-font-size: 14; -fx-font-weight: bold;"/>
-            <ListView fx:id="allRoutesListView"
-                      prefHeight="400"
-                      style="-fx-control-inner-background: #fafafa; -fx-border-color: #ddd;"/>
-        </VBox>
+        <!-- VBox with ListView here -->
     </center>
     
-    <!-- Bottom Section: Action Buttons -->
+    <!-- TODO: Add bottom section with buttons -->
     <bottom>
-        <HBox spacing="10" style="-fx-padding: 15; -fx-background-color: #f0f0f0; -fx-alignment: center;">
-            <Button fx:id="openClientWindowButton"
-                    text="Open Client Window"
-                    onAction="#onOpenClientWindow"
-                    style="-fx-font-size: 12; -fx-padding: 10 20; -fx-cursor: hand;"
-                    prefWidth="150"/>
-        </HBox>
+        <!-- HBox with buttons here -->
     </bottom>
 </BorderPane>
