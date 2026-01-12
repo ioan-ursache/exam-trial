@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+    Client Window FXML
+    
+    This FXML file defines the UI for a single client booking window.
+    Multiple instances of this window can be opened simultaneously.
+    
+    Features:
+    1. Source city combo box (requirement: 1p)
+    2. Destination city combo box - dynamically filtered (requirement: 2p)
+    3. Available routes list display (requirement: 1.5p)
+    4. Ticket booking with validation (requirement: 0.5 + 1 + 2p)
+    5. Real-time updates via Observer pattern (bonus: 1p)
+    
+    Layout: VBox with sections for selection, display, and booking
+-->
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.buscompany.controller.ClientWindowController"
+      spacing="10"
+      style="-fx-padding: 15; -fx-font-family: 'Segoe UI'; -fx-font-size: 12;">
+    
+    <!-- Window Title -->
+    <Label fx:id="windowTitleLabel" text="Client Window"
+           style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+    
+    <!-- City Selection Section -->
+    <VBox spacing="10" style="-fx-border-color: #ddd; -fx-border-radius: 5; -fx-padding: 10; -fx-background-color: #fafafa;">
+        <Label text="Select Route" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+        
+        <HBox spacing="10">
+            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                <Label text="From (Source City):" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+                <ComboBox fx:id="sourceCityComboBox"
+                          onAction="#onSourceCitySelected"
+                          style="-fx-font-size: 12;"/>
+            </VBox>
+            
+            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                <Label text="To (Destination City):" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+                <ComboBox fx:id="destinationCityComboBox"
+                          onAction="#onDestinationCitySelected"
+                          style="-fx-font-size: 12;"/>
+            </VBox>
+        </HBox>
+    </VBox>
+    
+    <!-- Available Routes Section -->
+    <VBox spacing="10" VBox.vgrow="ALWAYS">
+        <Label text="Available Routes" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+        <ListView fx:id="availableRoutesListView"
+                  prefHeight="150"
+                  VBox.vgrow="ALWAYS"
+                  style="-fx-control-inner-background: #fafafa; -fx-border-color: #ddd;"/>
+    </VBox>
+    
+    <!-- Selected Route Details -->
+    <VBox spacing="5" style="-fx-border-color: #ddd; -fx-border-radius: 5; -fx-padding: 10; -fx-background-color: #f9f9f9;">
+        <Label text="Selected Route Details:" style="-fx-font-size: 12; -fx-font-weight: bold;"/>
+        <Label fx:id="routeDetailsLabel" text="(No route selected)"
+               style="-fx-font-size: 11; -fx-text-fill: #666;"
+               wrapText="true"/>
+    </VBox>
+    
+    <!-- Booking Section -->
+    <VBox spacing="10" style="-fx-border-color: #ddd; -fx-border-radius: 5; -fx-padding: 10; -fx-background-color: #e8f5e9;">
+        <Label text="Book Tickets" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+        
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                <Label text="Number of Tickets:" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+                <Spinner fx:id="ticketCountSpinner"
+                         prefWidth="100"
+                         style="-fx-font-size: 12;"/>
+            </VBox>
+            
+            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                <Label text="Total Price:" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+                <Label fx:id="totalPriceLabel" text="Total: 0 lei"
+                       style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #2e7d32;"/>
+            </VBox>
+            
+            <Button fx:id="bookButton"
+                    text="Book Now"
+                    onAction="#onBookTickets"
+                    style="-fx-font-size: 12; -fx-padding: 8 20; -fx-cursor: hand;"
+                    prefWidth="100"/>
+        </HBox>
+    </VBox>
+</VBox>

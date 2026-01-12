@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+    Main Scene FXML
+    
+    This is the primary UI file for the Bus Booking System.
+    It displays:
+    - All available routes sorted by source city and departure time
+    - Button to open new client booking windows
+    
+    Layout: BorderPane with:
+    - Top: Title and info panel
+    - Center: Routes list view
+    - Bottom: Action buttons
+-->
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.buscompany.controller.MainSceneController"
+            style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12;">
+    
+    <!-- Top Section: Title and Stats -->
+    <top>
+        <VBox style="-fx-padding: 15; -fx-background-color: #f0f0f0;" spacing="10">
+            <Label text="Bus Booking System"
+                   style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+            <Label fx:id="routesCountLabel" text="Total Routes: 0"
+                   style="-fx-font-size: 12; -fx-text-fill: #666;"/>
+        </VBox>
+    </top>
+    
+    <!-- Center Section: Routes List -->
+    <center>
+        <VBox spacing="10" style="-fx-padding: 15;">
+            <Label text="All Available Routes (sorted by city and departure time)"
+                   style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+            <ListView fx:id="allRoutesListView"
+                      prefHeight="400"
+                      style="-fx-control-inner-background: #fafafa; -fx-border-color: #ddd;"/>
+        </VBox>
+    </center>
+    
+    <!-- Bottom Section: Action Buttons -->
+    <bottom>
+        <HBox spacing="10" style="-fx-padding: 15; -fx-background-color: #f0f0f0; -fx-alignment: center;">
+            <Button fx:id="openClientWindowButton"
+                    text="Open Client Window"
+                    onAction="#onOpenClientWindow"
+                    style="-fx-font-size: 12; -fx-padding: 10 20; -fx-cursor: hand;"
+                    prefWidth="150"/>
+        </HBox>
+    </bottom>
+</BorderPane>
